@@ -1,8 +1,5 @@
 from collections import defaultdict
 
-
-from collections import defaultdict
-
 with open("./word-files/normalized-words.txt", "r", encoding="utf-8") as f:
     with open("./word-files/letter-frequencies.txt", "w", encoding="utf-8") as fw:
         words = f.read().splitlines()
