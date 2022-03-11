@@ -6,8 +6,12 @@ with open("words.txt", "r", encoding="utf-8") as fr:
         lines = fr.readlines()
 
         chars = set('čšž')
+        prev_line = None
         for line in lines:
             char_locations = defaultdict(lambda:[])
+
+            if '.' in line:
+                continue
 
             if any((c in chars) for c in line):
                 for i,char in enumerate(line):
@@ -18,5 +22,9 @@ with open("words.txt", "r", encoding="utf-8") as fr:
             for k,values in char_locations.items():
                   for value in values:
                       line = line[:value] + k + line[value+1:]
-            fw.write(line) 
+
+            if prev_line != line:
+                fw.write(line)
+                prev_line = line
+
 
