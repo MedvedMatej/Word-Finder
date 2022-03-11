@@ -23,7 +23,7 @@ if __name__ == "__main__":
             forbidden_char_loc = sys.argv[4]
             forbidden_char_loc = [forbidden_char_loc[i:i+2] for i in range(0,len(forbidden_char_loc),2)]
         
-        with open("normalized-words.txt", "r", encoding="utf-8") as f:
+        with open("./word-files/normalized-words.txt", "r", encoding="utf-8") as f:
             filtered = f.read().splitlines()
             
             if included_chars:
@@ -38,6 +38,6 @@ if __name__ == "__main__":
             if forbidden_char_loc:
                 filtered = [word for word in filtered if 1 not in [forbidden[1] == word[int(forbidden[0])-1] for forbidden in forbidden_char_loc]]
 
-            print(set(filtered))
+            print(filtered)
 
     

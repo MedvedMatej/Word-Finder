@@ -1,8 +1,8 @@
 from unidecode import unidecode
 from collections import defaultdict
 
-with open("words.txt", "r", encoding="utf-8") as fr:
-    with open("normalized-words.txt", "w", encoding="utf-8") as fw:
+with open("./word-files/words.txt", "r", encoding="utf-8") as fr:
+    with open("./word-files/normalized-words.txt", "w", encoding="utf-8") as fw:
         lines = fr.readlines()
 
         chars = set('čšž')
