@@ -1,3 +1,4 @@
+from collections import defaultdict
 import sys
 
 if __name__ == "__main__":
@@ -37,8 +38,24 @@ if __name__ == "__main__":
         if forbidden_char_loc:
             filtered = [(word,score) for word,score in filtered if 1 not in [forbidden[1] == word[int(forbidden[0])-1] for forbidden in forbidden_char_loc]]
 
-        filtered.sort(key=lambda x: x[1], reverse=True)
-        words = [word for word,score in filtered]
+        #re-grade
+        counted_letters = defaultdict(int)
+        for word,_ in filtered:
+            for char in word:
+                counted_letters[char]+=1
+        letter_frequency = {k: (v/len(words)*5) for k,v in counted_letters.items()}
+        #print("Lettef freq", letter_frequency)
+        regraded = []
+        for word,score in filtered:
+            letters = {char for char in word}
+            score = 0
+            for letter in letters:
+                score += letter_frequency[letter]
+            regraded.append((word,score))
+        
+        #sort by most common letters
+        regraded.sort(key=lambda x: x[1], reverse=True)
+        words = [word for word,score in regraded]
         print(words)
 
     
